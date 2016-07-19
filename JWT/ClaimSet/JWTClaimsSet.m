@@ -44,7 +44,7 @@
     newClaimsSet.notBeforeDate = self.notBeforeDate;
     newClaimsSet.issuedAt = self.issuedAt;
     newClaimsSet.identifier = self.identifier;
-    newClaimsSet.type = self.type;
+//    newClaimsSet.type = self.type;
     
     return newClaimsSet;
 }

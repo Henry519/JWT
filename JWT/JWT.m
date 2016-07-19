@@ -446,7 +446,22 @@ static NSString *JWTErrorDomain = @"com.karma.jwt";
 }
 
 - (NSDictionary *)jwtPayload {
-    return _jwtClaimsSet ? [JWTClaimsSetSerializer dictionaryWithClaimsSet:_jwtClaimsSet] : _jwtPayload;
+    
+    NSMutableDictionary *claimsSetDict;
+    
+    if (_jwtClaimsSet) {
+        
+        claimsSetDict = (NSMutableDictionary *)[JWTClaimsSetSerializer dictionaryWithClaimsSet:_jwtClaimsSet];
+    }
+    
+    if (_jwtPayload) {
+        
+        [claimsSetDict addEntriesFromDictionary:_jwtPayload];
+        
+    }
+    
+    return claimsSetDict;
+//    return _jwtClaimsSet ? [JWTClaimsSetSerializer dictionaryWithClaimsSet:_jwtClaimsSet] : _jwtPayload;
 }
 
 #pragma mark - Fluent

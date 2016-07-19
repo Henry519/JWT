@@ -12,10 +12,10 @@
 
 + (NSArray *)claimsSetKeys
 {
-    return @[@"iss", @"sub", @"aud", @"exp", @"nbf", @"iat", @"jti", @"typ"];
+    return @[@"iss", @"sub", @"aud", @"exp", @"nbf", @"iat", @"jti"];
 }
 
-+ (NSDictionary *)dictionaryWithClaimsSet:(JWTClaimsSet *)theClaimsSet;
++ (NSMutableDictionary *)dictionaryWithClaimsSet:(JWTClaimsSet *)theClaimsSet;
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [self dictionary:dictionary setObjectIfNotNil:theClaimsSet.issuer forKey:@"iss"];
@@ -25,8 +25,8 @@
     [self dictionary:dictionary setObjectIfNotNil:@([theClaimsSet.notBeforeDate timeIntervalSince1970]) forKey:@"nbf"];
     [self dictionary:dictionary setObjectIfNotNil:@([theClaimsSet.issuedAt timeIntervalSince1970]) forKey:@"iat"];
     [self dictionary:dictionary setObjectIfNotNil:theClaimsSet.identifier forKey:@"jti"];
-    [self dictionary:dictionary setObjectIfNotNil:theClaimsSet.type forKey:@"typ"];
-    return [dictionary copy];
+//    [self dictionary:dictionary setObjectIfNotNil:theClaimsSet.type forKey:@"typ"];
+    return [dictionary mutableCopy];
 }
 
 + (JWTClaimsSet *)claimsSetWithDictionary:(NSDictionary *)theDictionary;
@@ -39,7 +39,7 @@
     claimsSet.notBeforeDate = [NSDate dateWithTimeIntervalSince1970:[[theDictionary objectForKey:@"nbf"] doubleValue]];
     claimsSet.issuedAt = [NSDate dateWithTimeIntervalSince1970:[[theDictionary objectForKey:@"iat"] doubleValue]];
     claimsSet.identifier = [theDictionary objectForKey:@"jti"];
-    claimsSet.type = [theDictionary objectForKey:@"typ"];
+//    claimsSet.type = [theDictionary objectForKey:@"typ"];
     return claimsSet;
 }
 

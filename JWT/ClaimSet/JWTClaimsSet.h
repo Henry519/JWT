@@ -17,6 +17,6 @@
 @property (nonatomic, readwrite, copy) NSDate *notBeforeDate;
 @property (nonatomic, readwrite, copy) NSDate *issuedAt;
 @property (nonatomic, readwrite, copy) NSString *identifier;
-@property (nonatomic, readwrite, copy) NSString *type;
+//@property (nonatomic, readwrite, copy) NSString *type;
 
 @end
